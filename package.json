@@ -38,8 +38,7 @@
         "lint:commits": "commitlint --from=origin/main --to=HEAD --verbose",
         "typecheck": "tsc --noEmit"
     },
-    "dependencies": {
-    },
+    "dependencies": {},
     "devDependencies": {
         "@biomejs/biome": "^2.2.0",
         "@commitlint/cli": "^19.8.1",
