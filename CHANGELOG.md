@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/angelxmoreno/axios-cache-interceptor-keyv/compare/v1.0.0...v1.1.0) (2025-08-22)
+
+
+### Features
+
+* added debug mode ([2d97418](https://github.com/angelxmoreno/axios-cache-interceptor-keyv/commit/2d974189621435364a42f3bd3a10525fcb3c3734))
+
 ## 1.0.0 (2025-08-22)
 
 
