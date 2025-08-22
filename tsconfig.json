@@ -12,7 +12,11 @@
         "moduleResolution": "bundler",
         "allowImportingTsExtensions": false,
         "verbatimModuleSyntax": true,
-        "noEmit": true,
+        "noEmit": false,
+        "outDir": "./dist",
+        "declaration": true,
+        "declarationMap": true,
+        "sourceMap": true,
 
         // Best practices
         "strict": true,
@@ -24,6 +28,7 @@
         // Some stricter flags (disabled by default)
         "noUnusedLocals": false,
         "noUnusedParameters": false,
-        "noPropertyAccessFromIndexSignature": false
+        "noPropertyAccessFromIndexSignature": false,
+        "noImplicitAny": true
     }
 }

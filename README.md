@@ -8,13 +8,12 @@ Universal storage adapter using [Keyv](https://github.com/jaredwray/keyv) for [a
 
 ## Features
 
-- 🔄 **Universal Storage**: One adapter, multiple backends (Redis, SQLite, MongoDB, PostgreSQL, etc.)
-- ⚡ **High Performance**: Built on Keyv's optimized storage layer
-- 🔧 **TypeScript First**: Full TypeScript support with strict typing
-- 🏷️ **Namespace Support**: Isolate cache keys with namespaces
-- ⏱️ **TTL Management**: Automatic expiration handling
-- 🛡️ **Error Resilient**: Graceful fallbacks for storage failures
-- 📦 **Zero Dependencies**: Only peer dependencies for maximum compatibility
+- **Universal Storage**: One adapter, multiple backends (Redis, SQLite, MongoDB, PostgreSQL, etc.)
+- **High Performance**: Built on Keyv's optimized storage layer
+- **TypeScript First**: Full TypeScript support with strict typing
+- **TTL Management**: Automatic expiration handling
+- **Error Resilient**: Graceful fallbacks for storage failures
+- **Zero Dependencies**: Only peer dependencies for maximum compatibility
 
 ## Installation
 
@@ -42,54 +41,65 @@ bun add axios-cache-interceptor-keyv keyv axios-cache-interceptor
 import axios from 'axios';
 import Keyv from 'keyv';
 import { setupCache } from 'axios-cache-interceptor';
-import { buildKeyvStorage } from 'axios-cache-interceptor-keyv';
+import { createKeyvStorage } from 'axios-cache-interceptor-keyv';
 
 const keyv = new Keyv(); // In-memory storage
 const api = setupCache(axios, {
-  storage: buildKeyvStorage(keyv)
+  storage: createKeyvStorage(keyv)
 });
 ```
 
 ### Redis Storage
 
 ```typescript
+import axios from 'axios';
 import Keyv from 'keyv';
-import { buildKeyvStorage } from 'axios-cache-interceptor-keyv';
+import { setupCache } from 'axios-cache-interceptor';
+import { createKeyvStorage } from 'axios-cache-interceptor-keyv';
 
 const keyv = new Keyv('redis://localhost:6379');
 const api = setupCache(axios, {
-  storage: buildKeyvStorage(keyv, 'api-cache') // Optional namespace
+  storage: createKeyvStorage(keyv)
 });
 ```
 
 ### SQLite Storage
 
 ```typescript
+import axios from 'axios';
+import Keyv from 'keyv';
+import { setupCache } from 'axios-cache-interceptor';
+import { createKeyvStorage } from 'axios-cache-interceptor-keyv';
+
 const keyv = new Keyv('sqlite://cache.db');
 const api = setupCache(axios, {
-  storage: buildKeyvStorage(keyv)
+  storage: createKeyvStorage(keyv)
 });
 ```
 
 ### MongoDB Storage
 
 ```typescript
+import axios from 'axios';
+import Keyv from 'keyv';
+import { setupCache } from 'axios-cache-interceptor';
+import { createKeyvStorage } from 'axios-cache-interceptor-keyv';
+
 const keyv = new Keyv('mongodb://localhost:27017/cache');
 const api = setupCache(axios, {
-  storage: buildKeyvStorage(keyv)
+  storage: createKeyvStorage(keyv)
 });
 ```
 
 ## API
 
-### `buildKeyvStorage(keyv, namespace?)`
+### `createKeyvStorage(keyv)`
 
 Creates a storage adapter compatible with axios-cache-interceptor.
 
 #### Parameters
 
 - **`keyv`** (`Keyv`): A Keyv instance configured with your preferred backend
-- **`namespace`** (`string`, optional): Namespace for key prefixing and isolation
 
 #### Returns
 
@@ -99,16 +109,13 @@ Creates a storage adapter compatible with axios-cache-interceptor.
 
 ```typescript
 import Keyv from 'keyv';
-import { buildKeyvStorage } from 'axios-cache-interceptor-keyv';
+import { createKeyvStorage } from 'axios-cache-interceptor-keyv';
 
-// With namespace
-const storage = buildKeyvStorage(
-  new Keyv('redis://localhost:6379'),
-  'user-api'
-);
+// In-memory storage
+const storage = createKeyvStorage(new Keyv());
 
-// Without namespace
-const storage = buildKeyvStorage(new Keyv());
+// Redis storage
+const storage = createKeyvStorage(new Keyv('redis://localhost:6379'));
 ```
 
 ## Supported Backends
@@ -132,7 +139,7 @@ This adapter works with any Keyv-compatible backend:
 ```typescript
 import Keyv from 'keyv';
 import { setupCache } from 'axios-cache-interceptor';
-import { buildKeyvStorage } from 'axios-cache-interceptor-keyv';
+import { createKeyvStorage } from 'axios-cache-interceptor-keyv';
 
 const keyv = new Keyv('redis://localhost:6379', {
   ttl: 1000 * 60 * 60, // 1 hour default TTL
@@ -140,7 +147,7 @@ const keyv = new Keyv('redis://localhost:6379', {
 });
 
 const api = setupCache(axios, {
-  storage: buildKeyvStorage(keyv),
+  storage: createKeyvStorage(keyv),
   ttl: 1000 * 60 * 15 // 15 minutes cache TTL
 });
 ```
@@ -155,7 +162,7 @@ keyv.on('error', (error) => {
 });
 
 const api = setupCache(axios, {
-  storage: buildKeyvStorage(keyv)
+  storage: createKeyvStorage(keyv)
 });
 ```
 
@@ -164,7 +171,7 @@ const api = setupCache(axios, {
 ```typescript
 // User data cache
 const userCache = setupCache(axios.create(), {
-  storage: buildKeyvStorage(
+  storage: createKeyvStorage(
     new Keyv('redis://localhost:6379'),
     'users'
   )
@@ -172,7 +179,7 @@ const userCache = setupCache(axios.create(), {
 
 // Product data cache  
 const productCache = setupCache(axios.create(), {
-  storage: buildKeyvStorage(
+  storage: createKeyvStorage(
     new Keyv('redis://localhost:6379'),
     'products'
   )
@@ -259,9 +266,10 @@ This project is licensed under the MIT License - see the [LICENSE](./LICENSE) fi
 
 ## Support
 
-- 📚 [Documentation](https://github.com/angelxmoreno/axios-cache-interceptor-keyv)
-- 🐛 [Issues](https://github.com/angelxmoreno/axios-cache-interceptor-keyv/issues)
-- 💬 [Discussions](https://github.com/angelxmoreno/axios-cache-interceptor-keyv/discussions)
+- [Documentation](https://github.com/angelxmoreno/axios-cache-interceptor-keyv)
+- [Issues](https://github.com/angelxmoreno/axios-cache-interceptor-keyv/issues)
+- [Discussions](https://github.com/angelxmoreno/axios-cache-interceptor-keyv/discussions)
+- [Discord](https://discord.gg/wjdDvWRWWj)
 
 ---
 
