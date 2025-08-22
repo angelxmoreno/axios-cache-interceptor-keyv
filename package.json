@@ -1,6 +1,6 @@
 {
     "name": "axios-cache-interceptor-keyv",
-    "version": "0.0.0",
+    "version": "1.0.0",
     "description": "Universal storage adapter using Keyv for axios-cache-interceptor - supports Redis, SQLite, MongoDB, PostgreSQL and more backends",
     "author": "Angel S. Moreno <angelxmoreno@gmail.com>",
     "license": "MIT",
