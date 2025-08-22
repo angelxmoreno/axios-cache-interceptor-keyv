@@ -1,0 +1,268 @@
+# axios-cache-interceptor-keyv
+
+[![npm version](https://badge.fury.io/js/axios-cache-interceptor-keyv.svg)](https://badge.fury.io/js/axios-cache-interceptor-keyv)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+[![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/)
+
+Universal storage adapter using [Keyv](https://github.com/jaredwray/keyv) for [axios-cache-interceptor](https://github.com/arthurfiorette/axios-cache-interceptor) - supports Redis, SQLite, MongoDB, PostgreSQL and more backends.
+
+## Features
+
+- 🔄 **Universal Storage**: One adapter, multiple backends (Redis, SQLite, MongoDB, PostgreSQL, etc.)
+- ⚡ **High Performance**: Built on Keyv's optimized storage layer
+- 🔧 **TypeScript First**: Full TypeScript support with strict typing
+- 🏷️ **Namespace Support**: Isolate cache keys with namespaces
+- ⏱️ **TTL Management**: Automatic expiration handling
+- 🛡️ **Error Resilient**: Graceful fallbacks for storage failures
+- 📦 **Zero Dependencies**: Only peer dependencies for maximum compatibility
+
+## Installation
+
+```bash
+npm install axios-cache-interceptor-keyv keyv axios-cache-interceptor
+```
+
+```bash
+yarn add axios-cache-interceptor-keyv keyv axios-cache-interceptor
+```
+
+```bash
+pnpm add axios-cache-interceptor-keyv keyv axios-cache-interceptor
+```
+
+```bash
+bun add axios-cache-interceptor-keyv keyv axios-cache-interceptor
+```
+
+## Quick Start
+
+### In-Memory Storage (Default)
+
+```typescript
+import axios from 'axios';
+import Keyv from 'keyv';
+import { setupCache } from 'axios-cache-interceptor';
+import { buildKeyvStorage } from 'axios-cache-interceptor-keyv';
+
+const keyv = new Keyv(); // In-memory storage
+const api = setupCache(axios, {
+  storage: buildKeyvStorage(keyv)
+});
+```
+
+### Redis Storage
+
+```typescript
+import Keyv from 'keyv';
+import { buildKeyvStorage } from 'axios-cache-interceptor-keyv';
+
+const keyv = new Keyv('redis://localhost:6379');
+const api = setupCache(axios, {
+  storage: buildKeyvStorage(keyv, 'api-cache') // Optional namespace
+});
+```
+
+### SQLite Storage
+
+```typescript
+const keyv = new Keyv('sqlite://cache.db');
+const api = setupCache(axios, {
+  storage: buildKeyvStorage(keyv)
+});
+```
+
+### MongoDB Storage
+
+```typescript
+const keyv = new Keyv('mongodb://localhost:27017/cache');
+const api = setupCache(axios, {
+  storage: buildKeyvStorage(keyv)
+});
+```
+
+## API
+
+### `buildKeyvStorage(keyv, namespace?)`
+
+Creates a storage adapter compatible with axios-cache-interceptor.
+
+#### Parameters
+
+- **`keyv`** (`Keyv`): A Keyv instance configured with your preferred backend
+- **`namespace`** (`string`, optional): Namespace for key prefixing and isolation
+
+#### Returns
+
+- `AxiosStorage`: Storage adapter compatible with axios-cache-interceptor
+
+#### Example
+
+```typescript
+import Keyv from 'keyv';
+import { buildKeyvStorage } from 'axios-cache-interceptor-keyv';
+
+// With namespace
+const storage = buildKeyvStorage(
+  new Keyv('redis://localhost:6379'),
+  'user-api'
+);
+
+// Without namespace
+const storage = buildKeyvStorage(new Keyv());
+```
+
+## Supported Backends
+
+This adapter works with any Keyv-compatible backend:
+
+| Backend | Connection String Example | Package Required |
+|---------|---------------------------|------------------|
+| **Redis** | `redis://localhost:6379` | `@keyv/redis` |
+| **MongoDB** | `mongodb://localhost:27017/db` | `@keyv/mongo` |
+| **SQLite** | `sqlite://cache.db` | `@keyv/sqlite` |
+| **PostgreSQL** | `postgresql://user:pass@localhost/db` | `@keyv/postgres` |
+| **MySQL** | `mysql://user:pass@localhost/db` | `@keyv/mysql` |
+| **Memcache** | `memcache://localhost:11211` | `@keyv/memcache` |
+| **In-Memory** | `new Keyv()` | None (built-in) |
+
+## Advanced Usage
+
+### Custom TTL and Configuration
+
+```typescript
+import Keyv from 'keyv';
+import { setupCache } from 'axios-cache-interceptor';
+import { buildKeyvStorage } from 'axios-cache-interceptor-keyv';
+
+const keyv = new Keyv('redis://localhost:6379', {
+  ttl: 1000 * 60 * 60, // 1 hour default TTL
+  namespace: 'myapp'
+});
+
+const api = setupCache(axios, {
+  storage: buildKeyvStorage(keyv),
+  ttl: 1000 * 60 * 15 // 15 minutes cache TTL
+});
+```
+
+### Error Handling
+
+```typescript
+const keyv = new Keyv('redis://localhost:6379');
+
+keyv.on('error', (error) => {
+  console.error('Keyv connection error:', error);
+});
+
+const api = setupCache(axios, {
+  storage: buildKeyvStorage(keyv)
+});
+```
+
+### Multiple Cache Instances
+
+```typescript
+// User data cache
+const userCache = setupCache(axios.create(), {
+  storage: buildKeyvStorage(
+    new Keyv('redis://localhost:6379'),
+    'users'
+  )
+});
+
+// Product data cache  
+const productCache = setupCache(axios.create(), {
+  storage: buildKeyvStorage(
+    new Keyv('redis://localhost:6379'),
+    'products'
+  )
+});
+```
+
+## Development
+
+### Prerequisites
+
+- [Bun](https://bun.sh) runtime
+- Node.js 18+ (for compatibility testing)
+
+### Setup
+
+```bash
+git clone https://github.com/angelxmoreno/axios-cache-interceptor-keyv.git
+cd axios-cache-interceptor-keyv
+bun install
+```
+
+### Scripts
+
+```bash
+# Run tests
+bun test
+
+# Run tests with coverage
+bun run test:coverage
+
+# Lint code
+bun run lint
+
+# Fix linting issues
+bun run lint:fix
+
+# Type checking
+bun run typecheck
+
+# Build for production
+bun run build
+```
+
+### Testing
+
+The test suite includes comprehensive tests for:
+- Core functionality with in-memory Keyv
+- TTL handling and expiration
+- Error scenarios and edge cases
+- Integration with different backends
+- TypeScript type checking
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Make your changes
+4. Add tests for new functionality
+5. Ensure all tests pass (`bun test`)
+6. Run linting (`bun run lint`)
+7. Commit your changes (`git commit -m 'feat: add amazing feature'`)
+8. Push to the branch (`git push origin feature/amazing-feature`)
+9. Open a Pull Request
+
+### Commit Convention
+
+This project follows [Conventional Commits](https://www.conventionalcommits.org/):
+
+- `feat:` New features
+- `fix:` Bug fixes
+- `docs:` Documentation changes
+- `refactor:` Code refactoring
+- `test:` Test additions or modifications
+- `chore:` Maintenance tasks
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
+
+## Related Projects
+
+- [axios-cache-interceptor](https://github.com/arthurfiorette/axios-cache-interceptor) - HTTP request cache for axios
+- [Keyv](https://github.com/jaredwray/keyv) - Simple key-value storage with support for multiple backends
+
+## Support
+
+- 📚 [Documentation](https://github.com/angelxmoreno/axios-cache-interceptor-keyv)
+- 🐛 [Issues](https://github.com/angelxmoreno/axios-cache-interceptor-keyv/issues)
+- 💬 [Discussions](https://github.com/angelxmoreno/axios-cache-interceptor-keyv/discussions)
+
+---
+
+Made with ❤️ by [Angel S. Moreno](https://github.com/angelxmoreno)

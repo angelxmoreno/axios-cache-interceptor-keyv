@@ -1,0 +1,57 @@
+{
+    "name": "axios-cache-interceptor-keyv",
+    "version": "0.1.0",
+    "description": "Universal storage adapter using Keyv for axios-cache-interceptor - supports Redis, SQLite, MongoDB, PostgreSQL and more backends",
+    "author": "Angel S. Moreno <angelxmoreno@gmail.com>",
+    "license": "MIT",
+    "private": false,
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:angelxmoreno/axios-cache-interceptor-keyv.git"
+    },
+    "keywords": [
+        "axios-cache-interceptor",
+        "axios",
+        "cache",
+        "interceptor",
+        "keyv",
+        "redis",
+        "storage",
+        "typescript",
+        "sqlite",
+        "mongodb"
+    ],
+    "type": "module",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "prepare": "lefthook install",
+        "build": "tsc",
+        "prepublishOnly": "bun run test && bun run lint",
+        "test": "bun test",
+        "test:coverage": "bun test --coverage",
+        "lint": "biome check .",
+        "lint:fix": "biome check --write",
+        "lint:commits": "commitlint --from=origin/main --to=HEAD --verbose",
+        "typecheck": "tsc --noEmit"
+    },
+    "dependencies": {
+    },
+    "devDependencies": {
+        "@biomejs/biome": "^2.2.0",
+        "@commitlint/cli": "^19.8.1",
+        "@commitlint/config-conventional": "^19.8.1",
+        "axios-mock-adapter": "^2.1.0",
+        "lefthook": "^1.12.3",
+        "@types/bun": "^1.2.20",
+        "typescript": "^5.9.2"
+    },
+    "peerDependencies": {
+        "@keyvhq/core": "^2.1.7",
+        "axios": "^1.11.0",
+        "axios-cache-interceptor": "^1.8.2"
+    }
+}
