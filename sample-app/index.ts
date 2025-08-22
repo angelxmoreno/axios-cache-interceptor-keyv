@@ -44,7 +44,6 @@ async function demonstrateCache() {
             noCacheBypass: noCacheCall.data.unixtime !== secondCall.data.unixtime,
             cacheExpired: expiredCall.data.unixtime !== firstCall.data.unixtime,
         });
-
     } catch (error) {
         console.error('❌ Demo failed:', error);
     } finally {
