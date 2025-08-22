@@ -1,0 +1,32 @@
+# CodeRabbit AI Configuration for axios-cache-interceptor-keyv
+# Documentation: https://docs.coderabbit.ai/reference/configuration
+
+language: en-US
+enable_free_tier: true
+early_access: false
+
+reviews:
+  profile: chill
+  high_level_summary: true
+  poem: false
+  review_status: true
+  auto_review:
+    enabled: true
+    drafts: false
+  request_changes_workflow: true
+
+# Tool integrations
+tools:
+  biome:
+    enabled: true
+  gitleaks:
+    enabled: true
+
+# Code generation preferences
+code_generation:
+  docstrings:
+    language: en-US
+    format: jsdoc
+  unit_tests:
+    enabled: true
+    framework: bun_test
