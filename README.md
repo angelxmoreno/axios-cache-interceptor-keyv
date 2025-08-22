@@ -5,12 +5,9 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/)
 [![codecov](https://codecov.io/gh/angelxmoreno/axios-cache-interceptor-keyv/graph/badge.svg?token=KY5XQ5I8NS)](https://codecov.io/gh/angelxmoreno/axios-cache-interceptor-keyv)
 
-<a href="https://bun.sh">
-  <svg width="120" height="20" xmlns="http://www.w3.org/2000/svg">
-    <rect width="120" height="20" rx="3" fill="#000"/>
-    <text x="30" y="15" fill="white" font-family="Arial" font-size="11">Made with Bun</text>
-    <image x="5" y="2" width="16" height="16" href="https://bun.sh/logo.svg"/>
-  </svg>
+<a href="https://bun.sh" title="Built with Bun" style="display: inline-flex; align-items: center; padding: 2px 8px; background: #000; border-radius: 3px; text-decoration: none; height: 20px; box-sizing: border-box;">
+  <img src="./assets/bun-logo.svg" alt="Bun" width="16" height="16" style="margin-right: 6px;" />
+  <span style="color: white; font-family: Arial, sans-serif; font-size: 11px; line-height: 1;">Made with Bun</span>
 </a>
 
 ![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/angelxmoreno/axios-cache-interceptor-keyv?utm_source=oss&utm_medium=github&utm_campaign=angelxmoreno%2Faxios-cache-interceptor-keyv&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews)
