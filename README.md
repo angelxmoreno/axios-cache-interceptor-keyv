@@ -1,9 +1,21 @@
 # axios-cache-interceptor-keyv
 
-[![npm version](https://badge.fury.io/js/axios-cache-interceptor-keyv.svg)](https://badge.fury.io/js/axios-cache-interceptor-keyv)
+[![npm version](https://badge.fury.io/js/axios-cache-interceptor-keyv.svg)](https://www.npmjs.com/package/axios-cache-interceptor-keyv)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/)
 [![codecov](https://codecov.io/gh/angelxmoreno/axios-cache-interceptor-keyv/graph/badge.svg?token=KY5XQ5I8NS)](https://codecov.io/gh/angelxmoreno/axios-cache-interceptor-keyv)
+
+<a href="https://bun.sh">
+  <svg width="120" height="20" xmlns="http://www.w3.org/2000/svg">
+    <rect width="120" height="20" rx="3" fill="#000"/>
+    <text x="30" y="15" fill="white" font-family="Arial" font-size="11">Made with Bun</text>
+    <image x="5" y="2" width="16" height="16" href="https://bun.sh/logo.svg"/>
+  </svg>
+</a>
+
+![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/angelxmoreno/axios-cache-interceptor-keyv?utm_source=oss&utm_medium=github&utm_campaign=angelxmoreno%2Faxios-cache-interceptor-keyv&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews)
+[![Formatted with Biome](https://img.shields.io/badge/Formatted_with-Biome-60a5fa?style=flat&logo=biome)](https://biomejs.dev/)
+
 
 Universal storage adapter using [Keyv](https://github.com/jaredwray/keyv)
 for [axios-cache-interceptor](https://github.com/arthurfiorette/axios-cache-interceptor) - supports Redis, SQLite,
@@ -126,7 +138,7 @@ const storage = createKeyvStorage(new Keyv());
 const storage = createKeyvStorage(new Keyv('redis://localhost:6379'));
 
 // With debug logging enabled
-const debugStorage = createKeyvStorage(new Keyv(), { debug: true });
+const debugStorage = createKeyvStorage(new Keyv(), {debug: true});
 ```
 
 ## Supported Backends
@@ -135,21 +147,23 @@ This adapter works with any Keyv-compatible backend:
 
 ### Official @keyvhq Core Adapters
 
-| Backend        | Connection String Example             | Package Required    |
-|----------------|---------------------------------------|---------------------|
-| **Redis**      | `redis://localhost:6379`              | `@keyvhq/redis`     |
-| **MongoDB**    | `mongodb://localhost:27017/db`        | `@keyvhq/mongo`     |
-| **SQLite**     | `sqlite://cache.db`                   | `@keyvhq/sqlite`    |
-| **PostgreSQL** | `postgresql://user:pass@localhost/db` | `@keyvhq/postgres`  |
-| **MySQL**      | `mysql://user:pass@localhost/db`      | `@keyvhq/mysql`     |
-| **File**       | `file://path/to/cache`                | `@keyvhq/file`      |
-| **In-Memory**  | `new Keyv()`                          | None (built-in)     |
+| Backend        | Connection String Example             | Package Required   |
+|----------------|---------------------------------------|--------------------|
+| **Redis**      | `redis://localhost:6379`              | `@keyvhq/redis`    |
+| **MongoDB**    | `mongodb://localhost:27017/db`        | `@keyvhq/mongo`    |
+| **SQLite**     | `sqlite://cache.db`                   | `@keyvhq/sqlite`   |
+| **PostgreSQL** | `postgresql://user:pass@localhost/db` | `@keyvhq/postgres` |
+| **MySQL**      | `mysql://user:pass@localhost/db`      | `@keyvhq/mysql`    |
+| **File**       | `file://path/to/cache`                | `@keyvhq/file`     |
+| **In-Memory**  | `new Keyv()`                          | None (built-in)    |
 
 ### Community Adapters
 
-Additional storage adapters are available from the community. For a complete list, visit the [Keyv Community Adapters](https://github.com/microlinkhq/keyvhq?tab=readme-ov-file#community) page.
+Additional storage adapters are available from the community. For a complete list, visit
+the [Keyv Community Adapters](https://github.com/microlinkhq/keyvhq?tab=readme-ov-file#community) page.
 
 Popular community adapters include:
+
 - **keyv-anyredis** - Redis clusters and alternative Redis clients
 - **keyv-dynamodb** - DynamoDB storage adapter
 - **keyv-firestore** - Firebase Cloud Firestore adapter
@@ -232,7 +246,7 @@ import {createKeyvStorage} from 'axios-cache-interceptor-keyv';
 
 const keyv = new Keyv('redis://localhost:6379');
 const api = setupCache(axios, {
-    storage: createKeyvStorage(keyv, { debug: true })
+    storage: createKeyvStorage(keyv, {debug: true})
 });
 
 // This will log cache operations like:

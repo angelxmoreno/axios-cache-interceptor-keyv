@@ -16,22 +16,45 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          registry-url: https://registry.npmjs.org
-
       - name: Release Please
         id: release
         uses: googleapis/release-please-action@v4
         with:
           token: ${{ secrets.RELEASE_PLEASE_TOKEN }}
           release-type: node
-          package-name: axios-cache-interceptor-keyv
+
+      - name: Setup Node
+        if: ${{ steps.release.outputs.release_created == 'true' }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.org
+
+      - name: Install Bun
+        if: ${{ steps.release.outputs.release_created == 'true' }}
+        uses: oven-sh/setup-bun@v2
+
+      - name: Cache Bun dependencies
+        if: ${{ steps.release.outputs.release_created == 'true' }}
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.bun/install/cache
+            node_modules
+          key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-bun-
+
+      - name: Install dependencies
+        if: ${{ steps.release.outputs.release_created == 'true' }}
+        run: bun ci
+
+      - name: Build project
+        if: ${{ steps.release.outputs.release_created == 'true' }}
+        run: bun run build
 
       - name: Publish to npm
-        if: ${{ steps.release.outputs.release_published == 'true' }}
+        if: ${{ steps.release.outputs.release_created == 'true' }}
         run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
