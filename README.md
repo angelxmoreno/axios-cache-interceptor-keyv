@@ -9,7 +9,7 @@
   <svg width="120" height="20" xmlns="http://www.w3.org/2000/svg">
     <rect width="120" height="20" rx="3" fill="#000"/>
     <text x="30" y="15" fill="white" font-family="Arial" font-size="11">Made with Bun</text>
-    <image x="5" y="2" width="16" height="16" href="https://api.iconify.design/logos:bun.svg"/>
+    <image x="5" y="2" width="16" height="16" href="https://bun.sh/logo.svg"/>
   </svg>
 </a>
 
