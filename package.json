@@ -33,6 +33,7 @@
         "prepublishOnly": "bun run test && bun run lint",
         "test": "bun test",
         "test:coverage": "bun test --coverage",
+        "coverage:report": "bun run test:coverage && bun codecov -f coverage/lcov.info",
         "lint": "biome check .",
         "lint:fix": "biome check --write",
         "lint:commits": "commitlint --from=origin/main --to=HEAD --verbose",
@@ -43,9 +44,9 @@
         "@biomejs/biome": "^2.2.0",
         "@commitlint/cli": "^19.8.1",
         "@commitlint/config-conventional": "^19.8.1",
+        "@types/bun": "^1.2.20",
         "axios-mock-adapter": "^2.1.0",
         "lefthook": "^1.12.3",
-        "@types/bun": "^1.2.20",
         "typescript": "^5.9.2"
     },
     "peerDependencies": {
