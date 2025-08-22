@@ -6,6 +6,9 @@ enable_free_tier: true
 early_access: false
 
 reviews:
+  finishing_touches:
+    unit_tests:
+      enabled: true
   profile: chill
   high_level_summary: true
   poem: false
@@ -26,7 +29,3 @@ tools:
 code_generation:
   docstrings:
     language: en-US
-reviews:
-  finishing_touches:
-    unit_tests:
-      enabled: true
