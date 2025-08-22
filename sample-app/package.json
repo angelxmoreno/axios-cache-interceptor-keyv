@@ -1,0 +1,22 @@
+{
+    "name": "sample-app",
+    "module": "index.ts",
+    "type": "module",
+    "private": true,
+    "scripts": {
+        "dev": "bun run index.ts"
+    },
+    "devDependencies": {
+        "@types/bun": "latest"
+    },
+    "peerDependencies": {
+        "typescript": "^5"
+    },
+    "dependencies": {
+        "@keyvhq/core": "^2.1.7",
+        "@keyvhq/sqlite": "^2.1.7",
+        "axios": "^1.11.0",
+        "axios-cache-interceptor": "^1.8.2",
+        "axios-cache-interceptor-keyv": "^1.0.0"
+    }
+}
