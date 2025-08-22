@@ -26,7 +26,7 @@ tools:
 code_generation:
   docstrings:
     language: en-US
-    format: jsdoc
-  unit_tests:
-    enabled: true
-    framework: bun_test
+reviews:
+  finishing_touches:
+    unit_tests:
+      enabled: true

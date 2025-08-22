@@ -23,6 +23,12 @@ jobs:
       - name: Lint commit messages
         run: bun run lint:commits
 
+      - name: Run typecheck
+        run: bun run typecheck
+
+      - name: Build project
+        run: bun run build
+
       - name: Run tests
         run: bun test
 
