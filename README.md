@@ -3,6 +3,7 @@
 [![npm version](https://badge.fury.io/js/axios-cache-interceptor-keyv.svg)](https://badge.fury.io/js/axios-cache-interceptor-keyv)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/)
+[![codecov](https://codecov.io/gh/angelxmoreno/axios-cache-interceptor-keyv/graph/badge.svg?token=KY5XQ5I8NS)](https://codecov.io/gh/angelxmoreno/axios-cache-interceptor-keyv)
 
 Universal storage adapter using [Keyv](https://github.com/jaredwray/keyv) for [axios-cache-interceptor](https://github.com/arthurfiorette/axios-cache-interceptor) - supports Redis, SQLite, MongoDB, PostgreSQL and more backends.
 
