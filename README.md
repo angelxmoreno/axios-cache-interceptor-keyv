@@ -133,15 +133,31 @@ const debugStorage = createKeyvStorage(new Keyv(), { debug: true });
 
 This adapter works with any Keyv-compatible backend:
 
-| Backend        | Connection String Example             | Package Required |
-|----------------|---------------------------------------|------------------|
-| **Redis**      | `redis://localhost:6379`              | `@keyv/redis`    |
-| **MongoDB**    | `mongodb://localhost:27017/db`        | `@keyv/mongo`    |
-| **SQLite**     | `sqlite://cache.db`                   | `@keyv/sqlite`   |
-| **PostgreSQL** | `postgresql://user:pass@localhost/db` | `@keyv/postgres` |
-| **MySQL**      | `mysql://user:pass@localhost/db`      | `@keyv/mysql`    |
-| **Memcache**   | `memcache://localhost:11211`          | `@keyv/memcache` |
-| **In-Memory**  | `new Keyv()`                          | None (built-in)  |
+### Official @keyvhq Core Adapters
+
+| Backend        | Connection String Example             | Package Required    |
+|----------------|---------------------------------------|---------------------|
+| **Redis**      | `redis://localhost:6379`              | `@keyvhq/redis`     |
+| **MongoDB**    | `mongodb://localhost:27017/db`        | `@keyvhq/mongo`     |
+| **SQLite**     | `sqlite://cache.db`                   | `@keyvhq/sqlite`    |
+| **PostgreSQL** | `postgresql://user:pass@localhost/db` | `@keyvhq/postgres`  |
+| **MySQL**      | `mysql://user:pass@localhost/db`      | `@keyvhq/mysql`     |
+| **File**       | `file://path/to/cache`                | `@keyvhq/file`      |
+| **In-Memory**  | `new Keyv()`                          | None (built-in)     |
+
+### Community Adapters
+
+Additional storage adapters are available from the community. For a complete list, visit the [Keyv Community Adapters](https://github.com/microlinkhq/keyvhq?tab=readme-ov-file#community) page.
+
+Popular community adapters include:
+- **keyv-anyredis** - Redis clusters and alternative Redis clients
+- **keyv-dynamodb** - DynamoDB storage adapter
+- **keyv-firestore** - Firebase Cloud Firestore adapter
+- **keyv-lru** - In-memory LRU back-end
+- **keyv-memcache** - Memcache storage adapter
+- **keyv-mssql** - Microsoft SQL Server adapter
+- **keyv-s3** - Amazon S3 storage adapter
+- **quick-lru** - Simple "Least Recently Used" (LRU) cache
 
 ## Advanced Usage
 
@@ -301,7 +317,7 @@ This project is licensed under the MIT License - see the [LICENSE](./LICENSE) fi
 ## Related Projects
 
 - [axios-cache-interceptor](https://github.com/arthurfiorette/axios-cache-interceptor) - HTTP request cache for axios
-- [Keyv](https://github.com/jaredwray/keyv) - Simple key-value storage with support for multiple backends
+- [@keyvhq/core](https://github.com/microlinkhq/keyvhq) - Simple key-value storage with support for multiple backends
 
 ## Support
 
