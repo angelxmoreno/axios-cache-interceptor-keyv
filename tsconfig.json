@@ -30,5 +30,6 @@
         "noUnusedParameters": false,
         "noPropertyAccessFromIndexSignature": false,
         "noImplicitAny": true
-    }
+    },
+    "exclude": ["**/*.test.ts", "dist", "node_modules"]
 }
